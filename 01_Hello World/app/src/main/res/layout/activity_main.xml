@@ -9,6 +9,14 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/img_dice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        android:src="@drawable/empty_dice" />
+    
     <TextView
         android:id="@+id/txt_result"
         android:layout_width="wrap_content"
