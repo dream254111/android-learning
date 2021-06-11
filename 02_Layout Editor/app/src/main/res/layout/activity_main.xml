@@ -14,7 +14,14 @@
         android:layout_height="wrap_content"
         android:text="@string/name_label"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/medium_text_size"
-        tools:text="test from dream254111" />
+        tools:text="test from dream254111"
+        style="@style/NameStyle" />
+
+    <ImageView
+        android:id="@+id/star_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_margin"
+        android:contentDescription="@string/yellow_star"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
 </LinearLayout>
