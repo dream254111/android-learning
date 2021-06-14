@@ -7,7 +7,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="whiteBox">
-        <item name="android:background">@android:color/holo_green_light</item>
+        <item name="android:background">@android:color/white</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">@dimen/box_text</item>
         <item name="android:textColor">@android:color/white</item>
