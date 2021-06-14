@@ -38,6 +38,7 @@
         android:id="@+id/nickname_txt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/nicknameText"
         android:textAlignment="center"
         android:visibility="gone" />
 

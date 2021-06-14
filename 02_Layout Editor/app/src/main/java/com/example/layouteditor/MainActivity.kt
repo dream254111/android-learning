@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var doneButton: Button
@@ -42,5 +43,10 @@ class MainActivity : AppCompatActivity() {
         view.visibility = View.GONE
         nicknameEdit.visibility = View.VISIBLE
         doneButton.visibility = View.VISIBLE
+
+        nicknameEdit.requestFocus()
+
+        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.showSoftInput(nicknameEdit, 0)
     }
 }
