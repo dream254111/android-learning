@@ -13,6 +13,7 @@
         android:layout_marginStart="@dimen/margin_wide"
         android:layout_marginTop="@dimen/margin_wide"
         android:layout_marginEnd="@dimen/margin_wide"
+        android:fontFamily="@font/roboto"
         android:text="Hello World!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
