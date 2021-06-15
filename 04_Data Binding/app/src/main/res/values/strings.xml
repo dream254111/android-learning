@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">Data Binding</string>
+    <string name="about_me">About Me</string>
+    <string name="name_hint">What is your nickname?</string>
+    <string name="done">Done</string>
+    <string name="about_me_text">
+        I am <i>Chayapon Puakalong</i>, a programmer at <i>GIS Co., Ltd.</i> I love to learn new things and gain more experience to improve myself all the time. I like to plan every tasks that I was assigned, so time management is very important for me. Although my work is about building mobile application, I also learn about other fields too. My goal is to be a person who have a lot of experience and knowledge in order to improve myself and also improve the company that I work at, and be able to help other people.\n\n
+        <b>Experience</b>\n
+        <i>2020</i>\n
+        Application Developer\n
+        June 2020 to May 2021\n
+        GIS Co., Ltd., Bangkok\n\n
+        <i>2019</i>\n
+        Internship Trainee\n
+        June 2019 to August 2019\n
+        National Institute of Advanced Industrial 	Science and Technology (AIST), Japan\n\n
+        <i>2018</i>\n
+        Data Officer Assistant\n
+        July 2018 to August 2018\n
+    	N Health SAP, Bangkok\n\n
+        <i>2017</i>\n
+        Lab Assistant\n
+        June 2017 to August 2017\n
+	    Faculty of ICT, Mahidol University
+    </string>
 </resources>
