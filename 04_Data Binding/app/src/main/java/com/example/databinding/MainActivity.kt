@@ -9,45 +9,48 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import com.example.databinding.databinding.ActivityMainBinding
 import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var nicknameEdit: EditText
-    private lateinit var nicknameText: TextView
-    private lateinit var doneButton: Button
-
+    private lateinit var binding: ActivityMainBinding
     private lateinit var inputMethodManager: InputMethodManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
-        nicknameEdit = findViewById(R.id.nickname_edit)
-        nicknameText = findViewById(R.id.nickname_txt)
-        doneButton = findViewById(R.id.done_btn)
-
-        nicknameText.setOnClickListener {  onNicknameTextClick(it)}
-        doneButton.setOnClickListener { onDoneButtonClick(it) }
+        binding.apply {
+            doneBtn.setOnClickListener { onDoneButtonClick() }
+            nicknameTxt.setOnClickListener { onNicknameTextClick() }
+        }
     }
 
-    private fun onDoneButtonClick(view: View) {
-        nicknameText.text = nicknameEdit.text
+    private fun onDoneButtonClick() {
+        binding.apply {
+            nicknameTxt.apply {
+                text = nicknameEdit.text
+                visibility = View.VISIBLE
+            }
+            nicknameEdit.visibility = View.INVISIBLE
+            doneBtn.visibility = View.GONE
+        }
 
-        nicknameText.visibility = View.VISIBLE
-        nicknameEdit.visibility = View.INVISIBLE
-        doneButton.visibility = View.GONE
-
-        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        inputMethodManager.hideSoftInputFromWindow(binding.doneBtn.windowToken, 0)
     }
 
-    private fun onNicknameTextClick(view: View) {
-        nicknameText.visibility = View.INVISIBLE
-        nicknameEdit.visibility = View.VISIBLE
-        doneButton.visibility = View.VISIBLE
+    private fun onNicknameTextClick() {
+        binding.apply {
+            nicknameTxt.visibility = View.INVISIBLE
+            doneBtn.visibility = View.VISIBLE
+            nicknameEdit.apply {
+                visibility = View.VISIBLE
+                requestFocus()
+            }
+        }
 
-        nicknameEdit.requestFocus()
-        inputMethodManager.showSoftInput(nicknameEdit, 0)
+        inputMethodManager.showSoftInput(binding.nicknameEdit, 0)
     }
 }
