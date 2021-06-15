@@ -31,6 +31,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <TextView
+        android:id="@+id/nickname_txt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/app_name_txt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <Button
         android:id="@+id/done_btn"
         android:layout_width="wrap_content"
@@ -54,7 +66,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:text="@string/about_me_text"
+            android:textSize="@dimen/paragraph_text"
+            android:lineSpacingMultiplier="1.2"/>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
