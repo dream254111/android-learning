@@ -10,16 +10,19 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import com.example.databinding.data.MyName
 import com.example.databinding.databinding.ActivityMainBinding
 import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var inputMethodManager: InputMethodManager
+    private val myName = MyName("Chayapon Puakalong")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.nameData = myName
         inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
         binding.apply {
@@ -30,12 +33,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun onDoneButtonClick() {
         binding.apply {
-            nicknameTxt.apply {
-                text = nicknameEdit.text
-                visibility = View.VISIBLE
-            }
+            nicknameTxt.visibility = View.VISIBLE
             nicknameEdit.visibility = View.INVISIBLE
             doneBtn.visibility = View.GONE
+
+            myName.nickname = nicknameEdit.text.toString()
+            invalidateAll()
         }
 
         inputMethodManager.hideSoftInputFromWindow(binding.doneBtn.windowToken, 0)
