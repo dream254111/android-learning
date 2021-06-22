@@ -15,6 +15,7 @@
   -->
 
 <resources>
+    <!-- Value -->
     <string name="app_name">Guess the Word</string>
     <string name="skip">Skip</string>
     <string name="play_again">Play Again</string>
@@ -25,4 +26,8 @@
     <string name="got_it">Got it</string>
     <string name="end_game">End game</string>
     <string name="word_is">The word is…</string>
+
+    <!-- Format -->
+    <string name="quote_format">\"%s\"</string>
+    <string name="score_format">Current Score: %d</string>
 </resources>
