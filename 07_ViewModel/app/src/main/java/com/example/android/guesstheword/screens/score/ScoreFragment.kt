@@ -44,18 +44,19 @@ class ScoreFragment : Fragment() {
     ): View? {
         // Inflate view and obtain an instance of the binding class.
         val binding: ScoreFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.score_fragment, container, false)
-        binding.playAgainButton.setOnClickListener { viewModel.onPlayAgain() }
 
         val args = ScoreFragmentArgs.fromBundle(requireArguments())
         viewModelFactory = ScoreViewModelFactory(args.score)
         viewModel = ViewModelProvider(this, viewModelFactory).get(ScoreViewModel::class.java)
-        viewModel.score.observe(viewLifecycleOwner, Observer { score -> binding.scoreText.text = score.toString() })
         viewModel.eventPlayAgain.observe(viewLifecycleOwner, Observer { playAgain ->
             if (playAgain) {
                 findNavController().navigate(ScoreFragmentDirections.actionRestart())
                 viewModel.onPlayAgainComplete()
             }
         })
+
+        binding.scoreViewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
         return binding.root
     }

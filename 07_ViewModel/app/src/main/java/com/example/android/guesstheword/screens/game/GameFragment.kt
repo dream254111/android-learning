@@ -43,31 +43,13 @@ class GameFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.game_fragment, container, false)
 
-        binding.correctButton.setOnClickListener { onCorrect() }
-        binding.skipButton.setOnClickListener { onSkip() }
-        binding.endGameButton.setOnClickListener { onEndGame() }
-
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
-        viewModel.score.observe(viewLifecycleOwner, Observer { newScore -> binding.scoreText.text = newScore.toString() })
-        viewModel.word.observe(viewLifecycleOwner, Observer { newWord -> binding.wordIsText.text = newWord })
         viewModel.isGameFinish.observe(viewLifecycleOwner, Observer { isFinish -> if (isFinish) gameFinished() })
 
-        Log.i("GameFragment", "Get GameViewModel")
+        binding.gameViewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
         return binding.root
-    }
-
-    /** Methods for buttons presses **/
-    private fun onSkip() {
-        viewModel.onSkip()
-    }
-
-    private fun onCorrect() {
-        viewModel.onCorrect()
-    }
-
-    private fun onEndGame() {
-        gameFinished()
     }
 
     /** Methods for navigation **/
