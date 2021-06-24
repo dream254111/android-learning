@@ -27,6 +27,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android.trackmysleepquality.R
 import com.example.android.trackmysleepquality.database.SleepDatabase
+import com.example.android.trackmysleepquality.database.SleepNight
 import com.example.android.trackmysleepquality.databinding.FragmentSleepTrackerBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -48,6 +49,7 @@ class SleepTrackerFragment : Fragment() {
         // Get a reference to the binding object and inflate the fragment views.
         val binding: FragmentSleepTrackerBinding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_sleep_tracker, container, false)
+        val adapter = SleepNightAdapter()
 
         val application = requireNotNull(this.activity).application
         val dataSource = SleepDatabase.getInstance(application).sleepDatabaseDao
@@ -71,6 +73,7 @@ class SleepTrackerFragment : Fragment() {
 
         binding.sleepTrackerViewModel = viewModel
         binding.setLifecycleOwner(this)
+        binding.sleepList.adapter = adapter
 
         return binding.root
     }
