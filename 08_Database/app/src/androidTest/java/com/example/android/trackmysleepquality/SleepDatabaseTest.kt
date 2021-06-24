@@ -22,6 +22,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.example.android.trackmysleepquality.database.SleepDatabase
 import com.example.android.trackmysleepquality.database.SleepDatabaseDao
 import com.example.android.trackmysleepquality.database.SleepNight
+import kotlinx.coroutines.*
 import org.junit.Assert.assertEquals
 import org.junit.After
 import org.junit.Before
@@ -41,6 +42,7 @@ class SleepDatabaseTest {
 
     private lateinit var sleepDao: SleepDatabaseDao
     private lateinit var db: SleepDatabase
+    private lateinit var scope: CoroutineScope
 
     @Before
     fun createDb() {
@@ -52,20 +54,24 @@ class SleepDatabaseTest {
                 .allowMainThreadQueries()
                 .build()
         sleepDao = db.sleepDatabaseDao
+        scope = CoroutineScope(Job() + Dispatchers.IO)
     }
 
     @After
     @Throws(IOException::class)
     fun closeDb() {
         db.close()
+        scope.cancel()
     }
 
     @Test
     @Throws(Exception::class)
     fun insertAndGetNight() {
-        val night = SleepNight()
-        sleepDao.insert(night)
-        val tonight = sleepDao.getTonight()
-        assertEquals(tonight?.rating, -1)
+        scope.launch {
+            val night = SleepNight()
+            sleepDao.insert(night)
+            val tonight = sleepDao.getTonight()
+            assertEquals(tonight?.rating, -1)
+        }
     }
 }
