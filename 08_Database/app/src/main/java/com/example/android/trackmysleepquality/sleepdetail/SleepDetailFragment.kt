@@ -49,7 +49,8 @@ class SleepDetailFragment : Fragment() {
                 inflater, R.layout.fragment_sleep_detail, container, false)
 
         val application = requireNotNull(this.activity).application
-        val arguments = SleepDetailFragmentArgs.fromBundle(arguments)
+        val debugByDream = arguments as Bundle
+        val arguments = SleepDetailFragmentArgs.fromBundle(debugByDream)
 
         // Create an instance of the ViewModel Factory.
         val dataSource = SleepDatabase.getInstance(application).sleepDatabaseDao

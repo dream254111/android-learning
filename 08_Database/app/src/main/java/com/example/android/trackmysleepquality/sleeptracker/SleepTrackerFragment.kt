@@ -21,6 +21,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridLayout
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -51,12 +52,15 @@ class SleepTrackerFragment : Fragment() {
         // Get a reference to the binding object and inflate the fragment views.
         val binding: FragmentSleepTrackerBinding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_sleep_tracker, container, false)
-        val adapter = SleepNightAdapter()
 
         val application = requireNotNull(this.activity).application
         val dataSource = SleepDatabase.getInstance(application).sleepDatabaseDao
         val viewModelFactory = SleepTrackerViewModelFactory(dataSource, application)
         val viewModel = ViewModelProvider(this, viewModelFactory).get(SleepTrackerViewModel::class.java)
+        val adapter = SleepNightAdapter(SleepNightListener { nightId ->
+            Toast.makeText(context, "$nightId", Toast.LENGTH_LONG).show()
+            viewModel.onSleepNightClicked(nightId)
+        })
 
         viewModel.navigateToSleepQuality.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -76,6 +80,12 @@ class SleepTrackerFragment : Fragment() {
         })
         viewModel.nights.observe(viewLifecycleOwner, Observer {
             it?.let { adapter.submitList(it) }
+        })
+        viewModel.navigateToSleepDetail.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                this.findNavController().navigate(SleepTrackerFragmentDirections.actionSleepTrackerFragmentToSleepDetailFragment(it))
+                viewModel.onSleepDetailNavigated()
+            }
         })
 
         val layoutManager = GridLayoutManager(activity, 5, GridLayoutManager.HORIZONTAL, false)
