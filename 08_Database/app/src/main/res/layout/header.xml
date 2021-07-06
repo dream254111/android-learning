@@ -4,7 +4,12 @@
     android:id="@+id/header_text"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="16dp"
+    android:background="@color/colorAccent"
     android:text="@string/sleep_results"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:textColor="@color/white_text_color"
     android:padding="8dp" >
 </TextView>
